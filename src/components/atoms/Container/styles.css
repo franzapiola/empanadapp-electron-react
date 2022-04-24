@@ -2,4 +2,15 @@
     width: 100vw;
     height: 100vh;
     padding: 10px;
+    background-color: #22333b;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-default {
+    color: #EBD9C9;
+    font-size: 30px;
 }

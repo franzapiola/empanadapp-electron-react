@@ -3,7 +3,9 @@ import "./styles.css";
 
 const Container = ({ children, className }) => {
   return (
-    <div className={`screen-container-default ${className}`}>{children}</div>
+    <div className={`screen-container-default text-default ${className}`}>
+      {children}
+    </div>
   );
 };
 

@@ -19,8 +19,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env BROWSER=none react-scripts start",
-    "start:mac": "BROWSER=none react-scripts start",
+    "start": "cross-env BROWSER=none react-app-rewired start",
+    "start:mac": "BROWSER=none react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -53,10 +53,13 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "babel-plugin-module-resolver": "^4.1.0",
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
+    "customize-cra": "^1.0.0",
     "electron": "^17.1.2",
     "electron-devtools-installer": "^3.2.0",
+    "react-app-rewired": "^2.2.1",
     "wait-on": "^6.0.1"
   }
 }

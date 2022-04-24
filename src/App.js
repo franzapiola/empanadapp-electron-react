@@ -1,15 +1,15 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { Button } from "@atoms";
+import { Welcome } from "@screens";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        EMPANADAPP
-        <Button onPress={() => console.log("ON PRESS")}>BOTÓN</Button>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        {/* <Route path="welcome" element={<Welcome />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

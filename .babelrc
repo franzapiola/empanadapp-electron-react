@@ -5,7 +5,8 @@
       {
         "root": ["./src"],
         "alias": {
-          "@atoms": "./src/components/atoms/index"
+          "@atoms": "./src/components/atoms/index",
+          "@screens": "./src/screens/index"
         }
       }
     ]

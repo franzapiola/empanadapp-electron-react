@@ -8,17 +8,18 @@ import "./styles.css";
 
 const Welcome = () => {
   const [usernameInput, setUsernameInput] = useState("");
-  const { setUsername } = useStore();
+  const { setUsername, counter } = useStore();
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     setUsername(usernameInput);
-    navigate("main");
+    counter.addParticipant(usernameInput);
+    navigate("home");
     console.log("avanzar en el flujo ahora");
   };
 
   return (
-    <Container className="container-custom">
+    <Container>
       <span>Bienvenido a EmpanadApp!</span>
       <span>Primero lo primero...</span>
       <span>¿Cómo te llamás?</span>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Button } from "@atoms";
 import useStore from "@state";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +11,6 @@ const Home = () => {
     navigate("/counter");
   };
 
-  useEffect(() => {
-    if (username === "Usuario") {
-      navigate("/");
-    }
-  }, [username, navigate]);
   return (
     <Container>
       <span>Hola, {username}</span>

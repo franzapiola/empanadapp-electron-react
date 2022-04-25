@@ -1,8 +1,21 @@
 import React from "react";
-import { Container } from "@atoms";
+import { Container, Button } from "@atoms";
+import { SingleParticipantCounter } from "@molecules";
+import useStore from "@state";
 
 const Counter = () => {
-  return <Container></Container>;
+  const {
+    username,
+    counter: { participants },
+  } = useStore();
+
+  const mainUserPicks = participants.find(({ name }) => name === username);
+
+  return (
+    <Container>
+      <SingleParticipantCounter />
+    </Container>
+  );
 };
 
 export default Counter;

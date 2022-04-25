@@ -1,3 +1,7 @@
 .container-custom {
     /* background-color: violet; */
 }
+
+.input-group {
+    width: 50%;
+}

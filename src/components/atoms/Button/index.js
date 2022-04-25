@@ -1,13 +1,23 @@
 import React from "react";
 import "./styles.css";
+
 /**
  * Reusable button
  */
-const Button = ({ onPress, children }) => {
+const Button = ({
+  onClick,
+  children,
+  type = "button",
+  styleType = "primary",
+}) => {
   return (
-    <div onClick={onPress} className="button-default">
+    <button
+      type={type}
+      className={`btn button-default button-custom-${styleType}`}
+      onClick={onClick}
+    >
       {children}
-    </div>
+    </button>
   );
 };
 

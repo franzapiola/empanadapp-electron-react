@@ -1,0 +1,19 @@
+.single-participant-counter-wrapper {
+    width: 95%;
+    height: 95%
+}
+
+.title {
+    height: 6%
+}
+
+.flavor-picker-container {
+    width: 100%;
+    height: 94%;
+    background-color: #314149;
+    border-radius: 15px;
+    border: solid 1px #00BFB2;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}

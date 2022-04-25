@@ -7,7 +7,10 @@
         "alias": {
           "@state": "./src/state/index",
           "@atoms": "./src/components/atoms/index",
-          "@screens": "./src/screens/index"
+          "@molecules": "./src/components/molecules/index",
+          "@screens": "./src/screens/index",
+          "@constants": "./src/constants/index",
+          "@routing": "./src/routing/index"
         }
       }
     ]

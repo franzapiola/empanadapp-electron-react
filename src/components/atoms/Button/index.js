@@ -6,6 +6,7 @@ import "./styles.css";
  */
 const Button = ({
   onClick,
+  className,
   children,
   type = "button",
   styleType = "primary",
@@ -13,7 +14,7 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`btn button-default button-custom-${styleType}`}
+      className={`btn button-default button-custom-${styleType} ${className}`}
       onClick={onClick}
     >
       {children}

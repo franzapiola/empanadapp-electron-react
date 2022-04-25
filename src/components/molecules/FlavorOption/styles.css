@@ -1,0 +1,38 @@
+.flavor-option-wrapper {
+    width: 200px;
+    height: 200px;
+    background-color: #22333B;
+    border-radius: 15px;
+
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flavor-option-amount-indicator {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 40px;
+}
+
+.flavor-option-buttons {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flavor-option-button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+}
+
+.flavor-option-button:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}

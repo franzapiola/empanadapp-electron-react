@@ -5,6 +5,7 @@
       {
         "root": ["./src"],
         "alias": {
+          "@state": "./src/state/index",
           "@atoms": "./src/components/atoms/index",
           "@screens": "./src/screens/index"
         }

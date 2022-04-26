@@ -1,0 +1,58 @@
+.custom-modal-overlay {
+    min-width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color: rgba(254, 254, 254, 0.373);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-modal-default {
+    min-width: 20%;
+    background-color: #22333b;
+    border-radius: 20px;
+    padding: 10px;
+
+    color: #EBD9C9;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-modal-content-wrapper {
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-modal-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-modal-title {
+    font-size: 25px;
+    margin-left: 7vw;
+    margin-right: 7vw;
+}
+
+.modal-close-button {
+    border-radius: 20px;
+    font-size: 20px;
+    color: #BB1121;
+    font-weight: bold;
+
+}
+
+.modal-close-button:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    color: #e0081e;
+}

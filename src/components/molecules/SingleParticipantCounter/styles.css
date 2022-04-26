@@ -1,10 +1,6 @@
 .single-participant-counter-wrapper {
     width: 95%;
-    height: 95%
-}
-
-.title {
-    height: 6%
+    min-height: auto;
 }
 
 .flavor-picker-container {

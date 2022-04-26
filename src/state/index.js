@@ -105,7 +105,39 @@ const useStore = create((set) => ({
           },
         };
       }),
+    addFlavor: (newFlavor) =>
+      set((state) => {
+        if (state.counter.flavors.find(({ name }) => name === newFlavor.name)) {
+          return state;
+        }
+
+        return {
+          ...state,
+          counter: {
+            ...state.counter,
+            flavors: [...state.counter.flavors, newFlavor],
+            participants: state.counter.participants.map((p) => ({
+              ...p,
+              picks: [...p.picks, newFlavor],
+            })),
+          },
+        };
+      }),
   },
+}));
+
+export const useModalStore = create((set) => ({
+  show: {
+    addFlavorModal: false,
+  },
+  toggleModal: (key, value) =>
+    set((state) => ({
+      ...state,
+      show: {
+        ...state.show,
+        [`${key}Modal`]: value,
+      },
+    })),
 }));
 
 export default useStore;

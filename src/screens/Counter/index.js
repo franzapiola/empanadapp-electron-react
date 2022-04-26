@@ -1,19 +1,14 @@
 import React from "react";
-import { Container, Button } from "@atoms";
-import { SingleParticipantCounter } from "@molecules";
-import useStore from "@state";
+import { Container } from "@atoms";
+import { SingleParticipantCounter, AddFlavorModal } from "@molecules";
+import "./styles.css";
 
 const Counter = () => {
-  const {
-    username,
-    counter: { participants },
-  } = useStore();
-
-  const mainUserPicks = participants.find(({ name }) => name === username);
-
   return (
-    <Container>
+    <Container className="counter-screen-container">
+      <AddFlavorModal />
       <SingleParticipantCounter />
+      <h1 className="counter-title">Tu pedido</h1>
     </Container>
   );
 };

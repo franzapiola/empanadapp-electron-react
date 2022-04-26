@@ -100,7 +100,7 @@ const useStore = create((set) => ({
           },
         };
       }),
-    //Increase flavor pick count by index, within the currently selected participant's picks
+    //Decrease flavor pick count by index, within the currently selected participant's picks
     decreaseFlavorCount: (index) =>
       set((state) => {
         const {
@@ -138,7 +138,7 @@ const useStore = create((set) => ({
 export const useModalStore = create((set) => ({
   show: {
     addFlavorModal: false,
-    addParticipantModal: true,
+    addParticipantModal: false,
   },
   toggleModal: (key, value) =>
     set((state) => ({

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Input, Button } from "@atoms";
+import { Modal, Input } from "@atoms";
 import useStore, { useModalStore } from "@state";
 import "./styles.css";
 
@@ -8,7 +8,8 @@ const AddParticipantModal = () => {
   const { show, toggleModal } = useModalStore();
   const [value, setValue] = useState("");
 
-  const submit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (value === "") return;
 
     counter.addParticipant(value);
@@ -22,7 +23,7 @@ const AddParticipantModal = () => {
       setModalVisible={(v) => toggleModal("addParticipant", v)}
       title="Agregar a alguien más"
     >
-      <form className="add-flavor-modal-input-group">
+      <form className="add-flavor-modal-input-group" onSubmit={handleSubmit}>
         <Input
           placeholder="Ingresa tu nombre..."
           autoFocus
@@ -30,7 +31,7 @@ const AddParticipantModal = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <Button className="add-flavor-modal-button" onClick={submit} />
+        {/* <Button className="add-flavor-modal-button" onClick={submit} /> */}
       </form>
     </Modal>
   );

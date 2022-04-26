@@ -16,15 +16,15 @@ const ParticipantsTabs = () => {
         const isSelected = index === selectedParticipantIndex;
         return (
           <Button
+            key={index}
             className={`participant-tab-button ${
               isSelected
                 ? "participant-tab-button-selected"
                 : "participant-tab-button-not-selected"
             }`}
+            onClick={() => selectParticipant(index)}
           >
-            <p key={index} onClick={() => selectParticipant(index)}>
-              {name}
-            </p>
+            {name}
           </Button>
         );
       })}

@@ -1,6 +1,7 @@
 .participants-tabs-wrapper {
     width: 100%;
-    margin-left: 15px
+    margin-left: 15px;
+    display: flex
 }
 
 .participant-tab-button {

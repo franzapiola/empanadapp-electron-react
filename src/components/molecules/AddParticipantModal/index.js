@@ -31,7 +31,6 @@ const AddParticipantModal = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        {/* <Button className="add-flavor-modal-button" onClick={submit} /> */}
       </form>
     </Modal>
   );

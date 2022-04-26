@@ -5,6 +5,10 @@
     font-size: 20px;
 }
 
+.button-default:focus {
+    box-shadow: none;
+}
+
 .button-custom-primary {
     background-color: #00A878;
 }

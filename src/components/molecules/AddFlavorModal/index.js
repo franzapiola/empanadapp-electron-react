@@ -8,7 +8,8 @@ const AddFlavorModal = () => {
   const { show, toggleModal } = useModalStore();
   const [value, setValue] = useState("");
 
-  const submit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (value === "") return;
 
     counter.addFlavor(value);
@@ -22,15 +23,14 @@ const AddFlavorModal = () => {
       setModalVisible={(v) => toggleModal("addFlavor", v)}
       title="Agregar otro gusto"
     >
-      <div className="add-flavor-modal-input-group">
+      <form className="add-flavor-modal-input-group" onSubmit={handleSubmit}>
         <Input
           placeholder="Ingresa el nombre..."
           className="add-flavor-modal-input"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <Button className="add-flavor-modal-button" onClick={submit} />
-      </div>
+      </form>
     </Modal>
   );
 };

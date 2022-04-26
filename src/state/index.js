@@ -6,108 +6,55 @@ const useStore = create((set) => ({
   username: "Usuario",
   setUsername: (v) => set((state) => ({ ...state, username: v })),
   counter: {
-    participants: [],
     flavors: [...defaultFlavors],
     totalCount: 0,
+    participants: [],
+    selectedParticipantIndex: 0,
+    selectParticipant: (index) =>
+      set((state) => ({
+        ...state,
+        counter: {
+          ...state.counter,
+          selectedParticipantIndex: index,
+        },
+      })),
     //Add a new participant to the party
     addParticipant: (name) =>
       set((state) => {
         const newParticipant = {
           name,
-          picks: state.counter.flavors,
           totalCount: 0,
         };
-        return {
-          ...state,
-          counter: {
-            ...state.counter,
-            participants: [...state.counter.participants, newParticipant],
-          },
-        };
-      }),
-    //Increase flavor pick count by participant name and flavor name
-    increaseFlavorCount: ({ participantName, flavorName }) =>
-      set((state) => {
-        const newArray = state.counter.participants;
-
-        let participantIndex;
-        const participant = newArray.find(({ name }, index) => {
-          if (name === participantName) {
-            participantIndex = index;
-            return true;
-          }
-          return false;
-        });
-
-        let flavorIndex;
-        const participantPicksFind = participant.picks.find(
-          ({ name }, index) => {
-            flavorIndex = index;
-            return name === flavorName;
-          }
+        const isDuplicate = state.counter.participants.find(
+          (p) => p.name === newParticipant.name
         );
-
-        participantPicksFind.amount++;
-        participant.picks[flavorIndex] = participantPicksFind;
-
-        participant.totalCount++;
-
-        newArray[participantIndex] = participant;
-
-        return {
-          ...state,
-          counter: {
-            ...state.counter,
-            totalCount: state.counter.totalCount + 1,
-            participants: newArray,
-          },
-        };
-      }),
-    //Decrease flavor count by participant name and flavor name
-    decreaseFlavorCount: ({ participantName, flavorName }) =>
-      set((state) => {
-        let totalCount = state.counter.totalCount;
-        let participantIndex;
-        const newArray = state.counter.participants;
-        const participant = state.counter.participants.find(
-          ({ name }, index) => {
-            if (name === participantName) {
-              participantIndex = index;
-              return true;
-            }
-            return false;
-          }
-        );
-
-        let flavorIndex;
-        const participantPicksFind = participant.picks.find(
-          ({ name }, index) => {
-            flavorIndex = index;
-            return name === flavorName;
-          }
-        );
-
-        if (participantPicksFind.amount > 0) {
-          participantPicksFind.amount--;
-          participant.picks[flavorIndex] = participantPicksFind;
-          participant.totalCount--;
-          totalCount--;
+        if (isDuplicate) {
+          return state;
         }
-
-        newArray[participantIndex] = participant;
-
+        const newArray = [...state.counter.participants, newParticipant];
         return {
           ...state,
           counter: {
             ...state.counter,
-            totalCount,
             participants: newArray,
+            selectedParticipantIndex: newArray.length - 1,
           },
         };
       }),
-    addFlavor: (newFlavor) =>
+    //Add new flavor, by flavor name
+    addFlavor: (newFlavorName) =>
       set((state) => {
-        if (state.counter.flavors.find(({ name }) => name === newFlavor.name)) {
+        const newFlavor = {
+          name: newFlavorName,
+          amount: 0,
+          //TODO: Add option to specify if new flavor is veggie
+          veggie: false,
+          countByParticipants: {},
+        };
+        const isDuplicate = state.counter.flavors.find(
+          ({ name }) => name === newFlavor.name
+        );
+        if (isDuplicate) {
           return state;
         }
 
@@ -116,10 +63,72 @@ const useStore = create((set) => ({
           counter: {
             ...state.counter,
             flavors: [...state.counter.flavors, newFlavor],
-            participants: state.counter.participants.map((p) => ({
-              ...p,
-              picks: [...p.picks, newFlavor],
-            })),
+            // participants: state.counter.participants.map((p) => ({
+            //   ...p,
+            //   picks: [...p.picks, newFlavor],
+            // })),
+          },
+        };
+      }),
+    //Increase flavor pick count by index, within the currently selected participant's picks
+    increaseFlavorCount: (index) =>
+      set((state) => {
+        const {
+          counter: { participants, selectedParticipantIndex },
+        } = state;
+        const currentParticipantName =
+          participants[selectedParticipantIndex].name;
+        const newArray = [...state.counter.flavors];
+        const selectedFlavor = newArray[index];
+
+        let amount = selectedFlavor.countByParticipants[currentParticipantName];
+
+        if (typeof amount === "number") {
+          amount++;
+        } else {
+          amount = 1;
+        }
+
+        selectedFlavor.countByParticipants[currentParticipantName] = amount;
+        newArray[index] = selectedFlavor;
+
+        return {
+          ...state,
+          counter: {
+            ...state.counter,
+            totalCount: state.counter.totalCount + 1,
+          },
+        };
+      }),
+    //Increase flavor pick count by index, within the currently selected participant's picks
+    decreaseFlavorCount: (index) =>
+      set((state) => {
+        const {
+          counter: { participants, selectedParticipantIndex },
+        } = state;
+        let totalCount = state.counter.totalCount;
+        const currentParticipantName =
+          participants[selectedParticipantIndex].name;
+        const newArray = [...state.counter.flavors];
+        const selectedFlavor = newArray[index];
+
+        let amount = selectedFlavor.countByParticipants[currentParticipantName];
+
+        if (typeof amount === "number" && amount > 0) {
+          amount--;
+          totalCount--;
+        } else {
+          amount = 0;
+        }
+
+        selectedFlavor.countByParticipants[currentParticipantName] = amount;
+        newArray[index] = selectedFlavor;
+
+        return {
+          ...state,
+          counter: {
+            ...state.counter,
+            totalCount,
           },
         };
       }),
@@ -129,13 +138,14 @@ const useStore = create((set) => ({
 export const useModalStore = create((set) => ({
   show: {
     addFlavorModal: false,
+    addParticipantModal: true,
   },
   toggleModal: (key, value) =>
     set((state) => ({
       ...state,
       show: {
         ...state.show,
-        [`${key}Modal`]: value,
+        [`${key}Modal`]: value || !state.show[`${key}Modal`],
       },
     })),
 }));

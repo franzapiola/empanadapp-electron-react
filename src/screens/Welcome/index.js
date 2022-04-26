@@ -24,7 +24,7 @@ const Welcome = () => {
       <span>Bienvenido a EmpanadApp!</span>
       <span>Primero lo primero...</span>
       <span>¿Cómo te llamás?</span>
-      <div className="input-group">
+      <form className="input-group">
         <Input
           autoFocus
           onChange={(e) => setUsernameInput(e.target.value)}
@@ -34,7 +34,7 @@ const Welcome = () => {
         <Button type="submit" onClick={handleSubmit}>
           Continuar
         </Button>
-      </div>
+      </form>
     </Container>
   );
 };

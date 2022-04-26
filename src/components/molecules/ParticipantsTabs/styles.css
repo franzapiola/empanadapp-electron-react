@@ -1,0 +1,31 @@
+.participants-tabs-wrapper {
+    width: 100%;
+    margin-left: 15px
+}
+
+.participant-tab-button {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.participant-tab-button-selected {
+    /* background-color: blue; */
+}
+
+.participant-tab-button-not-selected {
+    background-color: #314149;
+    color: #EBD9C9
+}
+
+.participant-tab-button-not-selected:hover {
+    color: #00A878
+}
+
+.participants-tab-add-participant-button {
+    border-radius: 20px;
+    height: 35px;
+}

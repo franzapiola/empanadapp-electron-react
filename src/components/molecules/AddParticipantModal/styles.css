@@ -1,0 +1,11 @@
+.add-flavor-modal-input-group {
+    display: flex;
+    
+}
+.add-flavor-modal-input {
+    font-size: 14px
+}
+
+.add-flavor-modal-button {
+    width: 60px
+}

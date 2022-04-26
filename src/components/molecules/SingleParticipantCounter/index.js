@@ -7,26 +7,21 @@ import "./styles.css";
 
 const SingleParticipantCounter = () => {
   const {
-    username,
-    counter: { participants, flavors },
+    counter: { flavors, participants, selectedParticipantIndex },
   } = useStore();
 
-  const participant = participants.find(({ name }) => name === username);
-
-  const getAmount = (flavorName) => {
-    return (
-      participant?.picks.find(({ name }) => name === flavorName)?.amount || 0
-    );
-  };
+  const { name: selectedParticipantName } =
+    participants[selectedParticipantIndex] || {};
 
   return (
     <div className="single-participant-counter-wrapper">
       <div className="flavor-picker-container">
-        {flavors.map(({ name: flavorName }) => (
+        {flavors.map(({ name, countByParticipants }, index) => (
           <FlavorOption
-            key={flavorName}
-            name={flavorName}
-            amount={getAmount(flavorName)}
+            key={name}
+            name={name}
+            amount={countByParticipants[selectedParticipantName]}
+            index={index}
           />
         ))}
         <AddFlavorButton />

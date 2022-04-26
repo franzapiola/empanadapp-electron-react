@@ -4,9 +4,8 @@ import "./styles.css";
 import { Button } from "@atoms";
 import useStore from "@state";
 
-const FlavorOption = ({ name, amount }) => {
+const FlavorOption = ({ name, amount, index }) => {
   const {
-    username,
     counter: { increaseFlavorCount, decreaseFlavorCount },
   } = useStore();
   return (
@@ -17,12 +16,7 @@ const FlavorOption = ({ name, amount }) => {
           <>
             <Button
               className="flavor-option-button"
-              onClick={() =>
-                decreaseFlavorCount({
-                  participantName: username,
-                  flavorName: name,
-                })
-              }
+              onClick={() => decreaseFlavorCount(index)}
             >
               -
             </Button>
@@ -31,9 +25,7 @@ const FlavorOption = ({ name, amount }) => {
         )}
         <Button
           className="flavor-option-button"
-          onClick={() =>
-            increaseFlavorCount({ participantName: username, flavorName: name })
-          }
+          onClick={() => increaseFlavorCount(index)}
         >
           +
         </Button>

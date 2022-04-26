@@ -2,32 +2,38 @@ const defaultFlavors = [
   {
     name: "Jamón y Queso",
     veggie: false,
-    amount: 0,
+    totalCount: 0,
+    countByParticipants: {},
   },
   {
     name: "Queso y Cebolla",
     veggie: true,
-    amount: 0,
+    totalCount: 0,
+    countByParticipants: {},
   },
   {
     name: "Carne",
     veggie: false,
-    amount: 0,
+    totalCount: 0,
+    countByParticipants: {},
   },
   {
     name: "Pollo",
     veggie: false,
-    amount: 0,
+    totalCount: 0,
+    countByParticipants: {},
   },
   {
     name: "Caprese",
     veggie: true,
-    amount: 0,
+    totalCount: 0,
+    countByParticipants: {},
   },
   {
     name: "Humita",
     veggie: true,
-    amount: 0,
+    totalCount: 0,
+    countByParticipants: {},
   },
 ];
 

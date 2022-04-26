@@ -3,7 +3,7 @@ import { Modal, Input, Button } from "@atoms";
 import useStore, { useModalStore } from "@state";
 import "./styles.css";
 
-const AddFlavorModal = () => {
+const AddParticipantModal = () => {
   const { counter } = useStore();
   const { show, toggleModal } = useModalStore();
   const [value, setValue] = useState("");
@@ -11,28 +11,29 @@ const AddFlavorModal = () => {
   const submit = () => {
     if (value === "") return;
 
-    counter.addFlavor(value);
+    counter.addParticipant(value);
     setValue("");
-    toggleModal("addFlavor", false);
+    toggleModal("addParticipant", false);
   };
 
   return (
     <Modal
-      isVisible={show.addFlavorModal}
-      setModalVisible={(v) => toggleModal("addFlavor", v)}
-      title="Agregar otro gusto"
+      isVisible={show.addParticipantModal}
+      setModalVisible={(v) => toggleModal("addParticipant", v)}
+      title="Agregar a alguien más"
     >
-      <div className="add-flavor-modal-input-group">
+      <form className="add-flavor-modal-input-group">
         <Input
-          placeholder="Ingresa el nombre..."
+          placeholder="Ingresa tu nombre..."
+          autoFocus
           className="add-flavor-modal-input"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
         <Button className="add-flavor-modal-button" onClick={submit} />
-      </div>
+      </form>
     </Modal>
   );
 };
 
-export default AddFlavorModal;
+export default AddParticipantModal;

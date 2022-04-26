@@ -8,3 +8,12 @@
 .button-custom-primary {
     background-color: #00A878;
 }
+
+.button-custom-danger {
+    background-color: #BB1121;
+}
+
+.button-custom-transparent {
+    background-color: transparent;
+
+}

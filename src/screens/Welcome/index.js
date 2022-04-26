@@ -12,6 +12,7 @@ const Welcome = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    if (usernameInput === "") return;
     setUsername(usernameInput);
     counter.addParticipant(usernameInput);
     navigate("home");
